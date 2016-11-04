@@ -61,11 +61,15 @@ f = 50;
 v10 = @(t) sqrt(2)*V.*sind(2*pi*f*t);
 v20 = @(t) sqrt(2)*V.*cosd(2*pi*f*t);
 
+
+% x = [I_l1 I_l2 I_0 v_0]
 A = [-R1/L1 0 0 -1/L1;
     0 -R2/L2 0 -1/l2;
     0 0 -R_load/L_load 1/L_load;
     1/(C1+C2) 1/(C1+C2) -1/(C1+C2) 0];
 
+
+% u = [v_1 v_2]
 B = [1/L1 0;
     0 1/L2;
     0 0;
