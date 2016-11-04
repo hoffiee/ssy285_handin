@@ -64,7 +64,7 @@ v20 = @(t) sqrt(2)*V.*cosd(2*pi*f*t);
 A = [-R1/L1 0 0 -1/L1;
     0 -R2/L2 0 -1/l2;
     0 0 -R_load/L_load 1/L_load;
-    1/(C1+C2) 1/(C1+C2) 1/(C1+C2) 0];
+    1/(C1+C2) 1/(C1+C2) -1/(C1+C2) 0];
 
 B = [1/L1 0;
     0 1/L2;
@@ -85,4 +85,16 @@ title('Steady state','Fontsize',15,'Interpreter','Latex')
 xlabel('$t$','Fontsize',15,'Interpreter','Latex')
 leg = legend('$i_{11}$','$i_{21}$','$i_0$','$v_0$');
 set(leg,'Fontsize',15,'Interpreter','Latex')
+
+
+% =========================
+% ===== d)	===============
+% =========================
+
+Atilde = 1000;
+ftilde = 5;
+u1 = @(t) Atilde*sind(2*pi*ftilde*t);
+u2 = @(t) Atilde*cosd(2*pi*ftilde*t);
+
+u = @(t) []
 
