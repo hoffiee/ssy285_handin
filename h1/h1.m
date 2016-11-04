@@ -96,5 +96,34 @@ ftilde = 5;
 u1 = @(t) Atilde*sind(2*pi*ftilde*t);
 u2 = @(t) Atilde*cosd(2*pi*ftilde*t);
 
-u = @(t) []
+
+
+
+%% TEST
+u = @(t) [0;
+          0;
+          0;
+          0;
+          u1(t);
+          u2(t)];
+      
+A = [-R1/L1 0 0 -1/L1 1/L1 0;
+    0 -R2/L2 0 -1/L2 0 1/L2;
+    0 0 -R_load/L_load 1/L_load 0 0;
+    1/(C1+C2) 1/(C1+C2) -1/(C1+C2) 0 0 0;
+    zeros(2,6)];
+
+%B = [0 0 0 0 1 1];
+B = zeros(6,6);
+B(5,5) = 1;
+B(6,6) = 1;
+
+n = length(t);
+
+x = zeros(6,n);
+
+for i = 2:n
+    x(:,i) = A*x(:,i-1)+B*u(i);
+end
+
 
